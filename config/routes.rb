@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   root "articles#index"
 
   get "/articles", to: "articles#index"
+  get "/articles/:id". to: "articles:show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
