@@ -1,18 +1,23 @@
 <h1>New Article</h1>
 
-<%= form_with model: @article do |form| %>
+<%= form_tag model: @article do |form| %>
   <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+    <%= label_tag :title %><br>
+    <%= text_field_tag :title %>
+    <% @article.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
 
   <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
+    <%= label_tag :body %><br>
+    <%= text_field_tag :body %><br>
+    <% @article.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= submit_tag %>
   </div>
-
 <% end %>
