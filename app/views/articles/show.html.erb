@@ -4,7 +4,23 @@
 
 <ul>
   <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li>
-    <%= link_to "Destroy", article_path(@article), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-  </li>
+  <li><%= link_to "Destroy", article_path(@article), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %></li>
 </ul>
+
+<h2>Add a comment:</h2>
+<%= form_tag model: [ @article, @article.comments.build ] do |form| %>
+  <p>
+    <%= label_tag :commenter %><br>
+    <%= text_field_tag :commenter %>
+  </p>
+  <p>
+    <%= label_tag :body %><br>
+    <%= text_area_tag :body %>
+  </p>
+  <p>
+    <%= submit_tag %>
+  </p>
+<% end %>
