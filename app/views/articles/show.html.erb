@@ -1,39 +1,40 @@
-<h1><%= @article.title %></h1>
-
-<p><%= @article.body %></p>
-
-<ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article), data: {
-                    turbo_method: :delete,
-                    turbo_confirm: "Are you sure?"
-                  } %></li>
-</ul>
-
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @article.body %>
+</p>
+ 
 <h2>Comments</h2>
 <% @article.comments.each do |comment| %>
   <p>
     <strong>Commenter:</strong>
     <%= comment.commenter %>
   </p>
-
+ 
   <p>
     <strong>Comment:</strong>
     <%= comment.body %>
   </p>
 <% end %>
-
+ 
 <h2>Add a comment:</h2>
-<%= form_tag model: [ @article, @article.comments.build ] do |form| %>
+<%= form_for([@article, @article.comments.build]) do |f| %>
   <p>
-    <%= label_tag :commenter %><br>
-    <%= text_field_tag :commenter %>
+    <%= f.label :commenter %><br>
+    <%= f.text_field :commenter %>
   </p>
   <p>
-    <%= label_tag :body %><br>
-    <%= text_area_tag :body %>
+    <%= f.label :body %><br>
+    <%= f.text_area :body %>
   </p>
   <p>
-    <%= submit_tag %>
+    <%= f.submit %>
   </p>
 <% end %>
+ 
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
